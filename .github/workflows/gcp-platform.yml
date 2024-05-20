@@ -5,39 +5,44 @@ on:
     branches:
       - master
 
-permissions:
-  id-token: write
-  contents: read
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Terraform repository
-        uses: actions/checkout@v3
+    - name: Checkout Terraform repository
+      uses: actions/checkout@v3
 
-      - name: Set up Terraform
-        uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_version: 0.15.5
+    - name: Set up Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 0.15.5
 
-      - name: Google Auth
-        uses: google-github-actions/auth@v2
-        with:
-          workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
-          service_account: '${{ secrets.SA_EMAIL }}'
-          create_credentials_file: true
-          export_environment_variables: true
+    - name: Google Auth
+      uses: google-github-actions/auth@v2
+      with:
+        workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
+        service_account: '${{ secrets.SA_EMAIL }}'
+        create_credentials_file: true
+        export_environment_variables: true
 
-      - name: Initialize Terraform
-        run: terraform init
+    - name: Verify Terraform files
+      run: |
+        ls -la infra
+        pwd
 
-      - name: Select Terraform Workspace
-        run: terraform workspace select my-workspace || terraform workspace new my-workspace
+    - name: Initialize Terraform
+      run: terraform init
+      working-directory: ./infra
 
-      - name: Plan Terraform changes
-        run: terraform plan -out=tfplan
+    - name: Select Terraform Workspace
+      run: terraform workspace select terraform_workspace || terraform workspace new terraform_workspace
+      working-directory: ./infra
 
-      - name: Apply Terraform changes
-        run: terraform apply -auto-approve tfplan
+    - name: Plan Terraform changes
+      run: terraform plan -out=tfplan
+      working-directory: ./infra
+
+    - name: Apply Terraform changes
+      run: terraform apply -auto-approve tfplan
+      working-directory: ./infra
