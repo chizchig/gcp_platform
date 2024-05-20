@@ -1,7 +1,7 @@
 variable "google_cloud_project_id" {
   type      = string
   sensitive = true
-  default = "cloud-temple-1818"
+  default   = "cloud-temple-1818"
 }
 
 variable "subnets" {

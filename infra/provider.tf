@@ -1,10 +1,11 @@
 terraform {
-    backend "remote" {
-      organization = "the_hub"
-      workspaces {
-        name = "gcp_platform"
-      }
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "the_hub"
+    workspaces {
+      name = "gcp_platform"
     }
+  }
   required_providers {
     google = {
       source  = "hashicorp/google"
