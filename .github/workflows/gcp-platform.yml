@@ -14,6 +14,9 @@ jobs:
     permissions:
       id-token: write
       contents: read
+    env:
+      TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
+      TF_WORKSPACE: ${{ secrets.TF_WORKSPACE }}
 
     steps:
     - name: Checkout Terraform repository
@@ -48,7 +51,7 @@ jobs:
       working-directory: ./infra
 
     - name: Select Terraform Workspace
-      run: terraform workspace select ${{ secrets.TF_WORKSPACE }} || terraform workspace new ${{ secrets.TF_WORKSPACE }}
+      run: terraform workspace select ${{ env.TF_WORKSPACE }} || terraform workspace new ${{ env.TF_WORKSPACE }}
       working-directory: ./infra
 
     - name: Plan Terraform changes
