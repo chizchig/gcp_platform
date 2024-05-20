@@ -6,11 +6,14 @@ on:
       - master
   pull_request:
     branches:
-        - master
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
 
     steps:
     - name: Checkout Terraform repository
@@ -28,6 +31,9 @@ jobs:
         service_account: '${{ secrets.SA_EMAIL }}'
         create_credentials_file: true
         export_environment_variables: true
+
+    - name: Set up Cloud SDK
+      uses: google-github-actions/setup-gcloud@v1
 
     - name: Verify Terraform files
       run: |
