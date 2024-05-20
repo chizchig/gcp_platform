@@ -5,6 +5,7 @@ terraform {
     workspaces {
       name = "gcp_platform"
     }
+    token = "$TF_CLOUD_TOKEN"
   }
 
   required_providers {
