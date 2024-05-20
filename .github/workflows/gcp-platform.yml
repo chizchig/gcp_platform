@@ -47,7 +47,7 @@ jobs:
       run: printenv | grep TF_
 
     - name: Initialize Terraform
-      run: terraform init
+      run: terraform init --upgrade
       working-directory: ./infra
 
     - name: Select Terraform Workspace
