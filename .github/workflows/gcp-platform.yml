@@ -11,9 +11,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    env:
-      TF_WORKSPACE: Dev
-      TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
     permissions:
       id-token: write
       contents: read
@@ -48,7 +45,7 @@ jobs:
       working-directory: ./infra
 
     - name: Select Terraform Workspace
-      run: terraform workspace select terraform_workspace || terraform workspace new terraform_workspace
+      run: terraform workspace select ${{ secrets.TF_WORKSPACE }} || terraform workspace new ${{ secrets.TF_WORKSPACE }}
       working-directory: ./infra
 
     - name: Plan Terraform changes
