@@ -40,6 +40,9 @@ jobs:
         ls -la infra
         pwd
 
+    - name: Print Environment Variables
+      run: printenv | grep TF_
+
     - name: Initialize Terraform
       run: terraform init
       working-directory: ./infra
