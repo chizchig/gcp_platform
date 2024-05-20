@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
         TF_WORKSPACE: Dev
-        TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN_DEV }}
+        TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
     permissions:
       id-token: write
       contents: read
