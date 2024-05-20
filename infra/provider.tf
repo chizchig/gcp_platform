@@ -1,7 +1,7 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "gcp_hub"  # Ensure this is the correct organization name
+    organization = "the_hub"  # Ensure this is the correct organization name
     workspaces {
       name = "gcp_platform"
     }
