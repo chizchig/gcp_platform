@@ -1,12 +1,12 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "gcp_hub"
+    organization = "gcp_hub"  # Ensure this is the correct organization name
     workspaces {
       name = "gcp_platform"
     }
-    token = "$TF_CLOUD_TOKEN"
   }
+
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -17,16 +17,4 @@ terraform {
       version = "~> 5.6.0"
     }
   }
-}
-
-provider "google" {
-  credentials = file("my-key.json")
-  project     = var.google_cloud_project_id
-  region      = "us-cental1"
-}
-
-provider "google-beta" {
-  credentials = file("my-key.json")
-  project     = var.google_cloud_project_id
-  region      = "us-cental1"
 }

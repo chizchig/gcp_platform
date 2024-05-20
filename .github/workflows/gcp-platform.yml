@@ -12,8 +12,8 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     env:
-        TF_WORKSPACE: Dev
-        TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
+      TF_WORKSPACE: Dev
+      TF_CLOUD_TOKEN: ${{ secrets.TF_CLOUD_TOKEN }}
     permissions:
       id-token: write
       contents: read
@@ -30,8 +30,8 @@ jobs:
     - name: Google Auth
       uses: google-github-actions/auth@v2
       with:
-        workload_identity_provider: '${{ secrets.WIF_PROVIDER }}'
-        service_account: '${{ secrets.SA_EMAIL }}'
+        workload_identity_provider: ${{ secrets.WIF_PROVIDER }}
+        service_account: ${{ secrets.SA_EMAIL }}
         create_credentials_file: true
         export_environment_variables: true
 
