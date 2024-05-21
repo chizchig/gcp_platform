@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    hostname     = "app.terraform.io"
+    hostname     = "app.terraform.io/power_hub"
     organization = "power_hub"  # Ensure this is the correct organization name
     workspaces {
       name = "gcp_platform"
