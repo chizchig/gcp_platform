@@ -2,12 +2,11 @@ terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
     organization = "the_hub"  # Ensure this is the correct organization name
-    workspaces = [
-      {
+    workspace = {
         name = "gcp_platform"
       }
-    ]
-    token = var.tf_cloud_token
+
+    token = "$TF_CLOUD_TOKEN"
   }
   required_providers {
     google = {
