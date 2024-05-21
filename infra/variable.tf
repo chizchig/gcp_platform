@@ -41,3 +41,8 @@ variable "instance_configurations" {
     }
   }
 }
+
+variable "tf_cloud_token" {
+  type = string
+  sensitive = true
+}

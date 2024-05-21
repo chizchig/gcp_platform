@@ -1,13 +1,14 @@
 terraform {
   backend "remote" {
     hostname     = "app.terraform.io"
-    organization = "Diamond_Connect"  # Ensure this is the correct organization name
-    workspaces {
-      name = "gcp_platform"
-    }
-    token = "$TF_CLOUD_TOKEN"
+    organization = "the_hub"  # Ensure this is the correct organization name
+    workspaces = [
+      {
+        name = "gcp_platform"
+      }
+    ]
+    token = var.tf_cloud_token
   }
-
   required_providers {
     google = {
       source  = "hashicorp/google"
