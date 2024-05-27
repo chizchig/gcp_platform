@@ -1,6 +1,6 @@
 terraform {
   backend "remote" {
-    hostname     = "app.terraform.io"
+    hostname     = "https://app.terraform.io/auth/62278aea-3702-47c3-831d-fbfaef79ebbb/callback"
     organization = "cloud_republic"  
     workspaces  {
         name = "gcp_platform"
